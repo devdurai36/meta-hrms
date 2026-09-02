@@ -14,14 +14,16 @@ function makeTranslationFunction() {
 			return;
 		}
 
-		const url = new URL("/api/method/frappe.translate.load_all_translations", location.origin);
+		const url = new URL("/api/method/frappe.translate.get_boot_translations", location.origin);
 		url.searchParams.append("lang", window.frappe?.boot?.lang ?? navigator.language);
 		url.searchParams.append("hash", window.frappe?.boot?.translations_hash || window._version_number || Math.random()); // for cache busting
 		// url.searchParams.append("app", "hrms");
 
 		try {
 			const response = await fetch(url);
-			messages = await response.json() || {}
+			const data = await response.json();
+			// the API wraps the dict in the standard Frappe {message: ...} envelope
+			messages = (data && data.message) || data || {};
 		} catch (error) {
 			console.error("Failed to fetch translations:", error)
 		}
