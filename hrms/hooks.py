@@ -1,5 +1,5 @@
 app_name = "hrms"
-app_title = "Frappe HR"
+app_title = "MetaCarat HR"
 app_publisher = "Frappe Technologies Pvt. Ltd."
 app_description = "Modern HR and Payroll Software"
 app_email = "contact@frappe.io"
@@ -13,7 +13,7 @@ add_to_apps_screen = [
 	{
 		"name": "hrms",
 		"logo": "/assets/hrms/images/frappe-hr-logo.svg",
-		"title": "Frappe HR",
+		"title": "MetaCarat HR",
 		"route": "/desk/people",
 		"has_permission": "hrms.hr.utils.check_app_permission",
 	}
@@ -97,8 +97,8 @@ jinja = {
 # ------------
 
 # before_install = "hrms.install.before_install"
-after_install = "hrms.install.after_install"
-after_migrate = "hrms.setup.update_select_perm_after_install"
+after_install = ["hrms.install.after_install", "hrms.branding.after_install"]
+after_migrate = ["hrms.setup.update_select_perm_after_install", "hrms.branding.after_migrate"]
 
 setup_wizard_complete = "hrms.subscription_utils.update_erpnext_access"
 

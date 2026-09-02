@@ -34,8 +34,9 @@
 			<div v-else class="flex h-screen w-screen flex-col justify-center bg-white">
 				<div class="flex flex-col mx-auto gap-3 items-center">
 					<FrappeHRLogo class="h-8 w-8" />
-					<div class="text-3xl font-semibold text-gray-900 text-center">
-						{{ __("Login to Frappe HR") }}
+					<MetaCaratWordmark class="h-12 mt-1" />
+					<div class="text-lg text-gray-700 text-center">
+						{{ __("Login to continue") }}
 					</div>
 				</div>
 
@@ -129,6 +130,7 @@ import { inject, reactive, ref } from "vue"
 import { Input, Button, ErrorMessage, Dialog, createResource } from "frappe-ui"
 
 import FrappeHRLogo from "@/components/icons/FrappeHRLogo.vue"
+import MetaCaratWordmark from "@/components/icons/MetaCaratWordmark.vue"
 
 const email = ref(null)
 const password = ref(null)
