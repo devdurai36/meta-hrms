@@ -27,6 +27,8 @@ export default defineConfig({
 				name: "MetaCarat HR",
 				short_name: "MetaCarat HR",
 				start_url: "/hrms",
+				scope: "/hrms",
+				id: "/hrms",
 				description: "Everyday HR & Payroll operations at your fingertips",
 				theme_color: "#ffffff",
 				icons: [
