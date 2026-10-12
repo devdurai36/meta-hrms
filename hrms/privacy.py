@@ -33,7 +33,9 @@ def apply_privacy():
 		settings.save()
 
 	for method in OUTBOUND_JOBS:
-		for name in frappe.get_all("Scheduled Job Type", filters={"method": method, "stopped": 0}, pluck="name"):
+		for name in frappe.get_all(
+			"Scheduled Job Type", filters={"method": method, "stopped": 0}, pluck="name"
+		):
 			frappe.db.set_value("Scheduled Job Type", name, "stopped", 1)
 
 	frappe.db.commit()
