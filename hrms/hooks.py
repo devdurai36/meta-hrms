@@ -110,10 +110,7 @@ after_migrate = [
 
 setup_wizard_requires = "assets/hrms/js/setup_wizard.js"
 setup_wizard_stages = "hrms.setup_wizard.get_setup_stages"
-setup_wizard_complete = [
-	"hrms.subscription_utils.update_erpnext_access",
-	"hrms.subscription_utils.set_hrms_as_default_app",
-]
+setup_wizard_complete = "hrms.subscription_utils.update_erpnext_access"
 
 extend_bootinfo = "hrms.utils.extend_bootinfo"
 
