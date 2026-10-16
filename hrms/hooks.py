@@ -7,15 +7,17 @@ app_license = "GNU General Public License (v3)"
 required_apps = ["frappe/erpnext"]
 source_link = "http://github.com/frappe/hrms"
 app_logo_url = "/assets/hrms/images/frappe-hr-logo.svg"
-app_home = "/desk/people"
+app_home = "/desk/hr-setup"
 
 add_to_apps_screen = [
 	{
 		"name": "hrms",
 		"logo": "/assets/hrms/images/frappe-hr-logo.svg",
 		"title": "MetaCarat HR",
-		"route": "/desk/people",
+		"route": app_home,
+		"setup_wizard_text": "Let's build a workplace your team will love.",
 		"has_permission": "hrms.hr.utils.check_app_permission",
+		"sequence_id": 2,
 	}
 ]
 
@@ -28,6 +30,8 @@ app_include_js = [
 	"hrms.bundle.js",
 ]
 app_include_css = "hrms.bundle.css"
+code_only_modules = {"HR": ["HR Setup"]}
+app_include_icons = ["/assets/hrms/icons/module-icons.svg"]
 
 # website
 
@@ -104,7 +108,11 @@ after_migrate = [
 	"hrms.privacy.after_migrate",
 ]
 
+setup_wizard_requires = "assets/hrms/js/setup_wizard.js"
+setup_wizard_stages = "hrms.setup_wizard.get_setup_stages"
 setup_wizard_complete = "hrms.subscription_utils.update_erpnext_access"
+
+extend_bootinfo = "hrms.utils.extend_bootinfo"
 
 # Uninstallation
 # ------------
@@ -175,6 +183,7 @@ doc_events = {
 		"on_update": [
 			"hrms.overrides.company.make_company_fixtures",
 			"hrms.overrides.company.set_default_hr_accounts",
+			"hrms.overrides.company.set_expense_claim_type_accounts",
 		],
 		"on_trash": "hrms.overrides.company.handle_linked_docs",
 	},
@@ -228,6 +237,10 @@ doc_events = {
 	"Attendance Request": {"on_submit": "hrms.telemetry.on_attendance_request_submit"},
 	"Shift Request": {"on_submit": "hrms.telemetry.on_shift_request_submit"},
 	"Employee Checkin": {"after_insert": "hrms.telemetry.on_employee_checkin"},
+	"Payroll Entry": {"on_submit": "hrms.telemetry.on_payroll_entry_submit"},
+	"Job Offer": {"on_submit": "hrms.telemetry.on_job_offer_submit"},
+	"Appraisal": {"on_submit": "hrms.telemetry.on_appraisal_submit"},
+	"Interview": {"on_submit": "hrms.telemetry.on_interview_submit"},
 	# ---- Activation telemetry: post-install setup funnel (first-time milestones) ----
 	"Shift Type": {"after_insert": "hrms.telemetry.on_milestone_insert"},
 	"Leave Type": {"after_insert": "hrms.telemetry.on_milestone_insert"},
@@ -236,7 +249,6 @@ doc_events = {
 	"Appraisal Cycle": {"after_insert": "hrms.telemetry.on_milestone_insert"},
 	"Employee Onboarding": {"after_insert": "hrms.telemetry.on_milestone_insert"},
 	"Salary Slip": {"on_submit": "hrms.telemetry.on_milestone_submit"},
-	"Payroll Entry": {"on_submit": "hrms.telemetry.on_milestone_submit"},
 }
 
 # Scheduled Tasks

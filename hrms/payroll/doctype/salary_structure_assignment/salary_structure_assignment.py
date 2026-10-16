@@ -5,8 +5,9 @@
 import frappe
 from frappe import _
 from frappe.model.document import Document
-from frappe.utils import cint, date_diff, flt, get_link_to_form, getdate
+from frappe.utils import cint, date_diff, flt, get_first_day, get_last_day, get_link_to_form, getdate
 
+import hrms
 from hrms.payroll.doctype.payroll_period.payroll_period import get_payroll_period
 from hrms.payroll.doctype.salary_structure.salary_structure import validate_max_benefit_for_flexible_benefit
 from hrms.payroll.utils import (
@@ -337,11 +338,66 @@ class SalaryStructureAssignment(Document):
 		rows_by_type["employer_contributions"] = self._evaluate_component_table(
 			salary_structure.get("employer_contributions") or [], data
 		)
+
+		# last, so the hook can read every abbr resolved above
+		self.apply_regional_ctc_components(rows_by_type, data)
+
 		return data, rows_by_type
 
-	def _get_component_eval_context(self) -> frappe._dict:
-		from hrms.payroll.doctype.payroll_entry.payroll_entry import get_start_end_dates
+	@hrms.allow_regional
+	def apply_regional_ctc_components(self, rows_by_type: dict, data: frappe._dict) -> None:
+		"""Hook point for statutory employer contributions a formula cannot express.
 
+		Add rows via ``upsert_employer_contribution``. Never mutate ``self`` or the
+		cached Salary Structure -- both are shared across a Payroll Entry run.
+		"""
+		pass
+
+	def upsert_employer_contribution(
+		self, rows_by_type: dict, data: frappe._dict, salary_component: str, amount: float
+	) -> frappe._dict | None:
+		"""Add or replace an employer contribution row, keyed by component.
+
+		A zero amount clears an existing row but never adds one.
+		"""
+		# the structure row calls it `abbr`, the component `salary_component_abbr`
+		fields = [f for f in SALARY_COMPONENT_FLAGS if f != "abbr"] + ["salary_component_abbr"]
+		component = frappe.db.get_value("Salary Component", salary_component, fields, as_dict=True)
+		if not component:
+			return None
+
+		rows = rows_by_type["employer_contributions"]
+		row = next((r for r in rows if r.salary_component == salary_component), None)
+
+		if row is None:
+			if not flt(amount):
+				return None
+
+			row = frappe._dict(
+				condition=None,
+				condition_met=True,
+				formula=None,
+				precision=frappe.get_precision("Salary Detail", "amount"),
+			)
+			for field in SALARY_COMPONENT_FLAGS:
+				row[field] = component.get(field)
+			row.salary_component = salary_component
+			row.abbr = component.salary_component_abbr
+			rows.append(row)
+		else:
+			row.condition = None
+			row.formula = None
+			row.amount_based_on_formula = 0
+
+		value = flt(amount, row.precision)
+		row.default_amount = value
+		row.amount = value
+		if row.abbr:
+			data[row.abbr] = value
+
+		return row
+
+	def _get_component_eval_context(self) -> frappe._dict:
 		data = get_component_eval_context(self.employee, self.as_dict())
 
 		# The SSA has no salary slip, so formulas referencing slip period fields (e.g.
@@ -349,10 +405,11 @@ class SalaryStructureAssignment(Document):
 		# from_date -- with no LWP/absence so proration-based formulas yield full-cycle
 		# values (payment_days == total_working_days, ratio 1).
 		frequency = frappe.get_cached_value("Salary Structure", self.salary_structure, "payroll_frequency")
-		dates = get_start_end_dates(frequency, self.from_date, self.company)
+		dates = self._get_full_cycle_dates(frequency)
 		period_days = date_diff(dates.end_date, dates.start_date) + 1
 		data.start_date = dates.start_date
 		data.end_date = dates.end_date
+		data.posting_date = dates.end_date
 		data.payment_days = period_days
 		data.total_working_days = period_days
 		data.leave_without_pay = 0
@@ -360,21 +417,44 @@ class SalaryStructureAssignment(Document):
 		data.unmarked_days = 0
 		return data
 
+	def _get_full_cycle_dates(self, frequency: str) -> frappe._dict:
+		from hrms.payroll.doctype.payroll_entry.payroll_entry import get_start_end_dates
+
+		if frequency not in ("Monthly", "Bimonthly", ""):
+			return get_start_end_dates(frequency, self.from_date)
+
+		# get_start_end_dates needs a fiscal year covering from_date for month-based
+		# frequencies, which long-running assignments may predate. Use calendar months.
+		from_date = getdate(self.from_date)
+		start_date, end_date = get_first_day(from_date), get_last_day(from_date)
+		if frequency == "Bimonthly":
+			if from_date.day <= 15:
+				end_date = start_date.replace(day=15)
+			else:
+				start_date = start_date.replace(day=16)
+
+		return frappe._dict(start_date=start_date, end_date=end_date)
+
 	def _evaluate_component_table(self, rows, data: frappe._dict) -> list:
 		"""Evaluate one component table against the shared ``data`` (mutating it
 		with each component's full-cycle amount). Returns fresh ``frappe._dict``
 		rows (cache-safe copies). Raises a clear error on a bad formula/condition.
-		Rows whose condition is falsey are skipped (not added to the slip)."""
+		Rows whose condition is falsey in this full-cycle context are still returned
+		with a zero default_amount: the condition may depend on period fields
+		(e.g. leave_without_pay > 0) that only the salary slip knows, so the slip
+		re-evaluates it."""
 		evaluated_components = []
 		for struct_row in rows:
 			condition = sanitize_expression(struct_row.condition)
 			formula = sanitize_expression(struct_row.formula)
 			amount = flt(struct_row.amount)
+			condition_met = True
 
 			try:
 				if condition and not _safe_eval(condition, COMPONENT_EVAL_GLOBALS.copy(), data):
-					continue
-				if struct_row.amount_based_on_formula and formula:
+					condition_met = False
+					default_amount = 0
+				elif struct_row.amount_based_on_formula and formula:
 					default_amount = flt(
 						_safe_eval(formula, COMPONENT_EVAL_GLOBALS.copy(), data),
 						struct_row.precision("amount"),
@@ -404,11 +484,13 @@ class SalaryStructureAssignment(Document):
 				)
 				raise
 
-			data[struct_row.abbr] = default_amount
+			if condition_met:
+				data[struct_row.abbr] = default_amount
 
 			evaluated_component_row = frappe._dict(
 				default_amount=default_amount,
 				amount=amount,
+				condition_met=condition_met,
 				condition=condition,
 				formula=formula,
 				precision=struct_row.precision("amount"),
