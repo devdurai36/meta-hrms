@@ -234,14 +234,18 @@ msgstr "<b>จำนวนวันลาที่จัดสรรทั้ง
 
 #. Content of the 'Help' (HTML) field in DocType 'Salary Component'
 #: hrms/payroll/doctype/salary_component/salary_component.json
-msgid "<h3>Help</h3>\n\n"
-"<p>Notes:</p>\n\n"
+msgid ""
+"<h3>Help</h3>\n"
+"\n"
+"<p>Notes:</p>\n"
+"\n"
 "<ol>\n"
 "<li>Use field <code>base</code> for using base salary of the Employee</li>\n"
 "<li>Use Salary Component abbreviations in conditions and formulas. <code>BS = Basic Salary</code></li>\n"
 "<li>Use field name for employee details in conditions and formulas. <code>Employment Type = employment_type</code><code>Branch = branch</code></li>\n"
 "<li>Use field name from Salary Slip in conditions and formulas. <code>Payment Days = payment_days</code><code>Leave without pay = leave_without_pay</code></li>\n"
-"<li>Direct Amount can also be entered based on Condition. See example 3</li></ol>\n\n"
+"<li>Direct Amount can also be entered based on Condition. See example 3</li></ol>\n"
+"\n"
 "<h4>Examples</h4>\n"
 "<ol>\n"
 "<li>Calculating Basic Salary based on <code>base</code>\n"
@@ -254,14 +258,18 @@ msgid "<h3>Help</h3>\n\n"
 "<pre><code>Condition: employment_type==\"Intern\"</code></pre>\n"
 "<pre><code>Amount: 1000</code></pre></li>\n"
 "</ol>"
-msgstr "<h3>ความช่วยเหลือ</h3>\n\n"
-"<p>หมายเหตุ:</p>\n\n"
+msgstr ""
+"<h3>ความช่วยเหลือ</h3>\n"
+"\n"
+"<p>หมายเหตุ:</p>\n"
+"\n"
 "<ol>\n"
 "<li>ใช้ฟิลด์ <code>base</code> สำหรับใช้เงินเดือนพื้นฐานของพนักงาน</li>\n"
 "<li>ใช้ตัวย่อขององค์ประกอบเงินเดือนในเงื่อนไขและสูตร <code>BS = เงินเดือนพื้นฐาน</code></li>\n"
 "<li>ใช้ชื่อฟิลด์สำหรับรายละเอียดพนักงานในเงื่อนไขและสูตร <code>ประเภทการจ้างงาน = employment_type</code><code>สาขา = branch</code></li>\n"
 "<li>ใช้ชื่อฟิลด์จาก Salary Slip ในเงื่อนไขและสูตร <code>วันจ่ายเงิน = payment_days</code><code>ลาพักโดยไม่ได้รับเงิน = leave_without_pay</code></li>\n"
-"<li>จำนวนเงินโดยตรงสามารถป้อนได้ตามเงื่อนไข ดูตัวอย่างที่ 3</li></ol>\n\n"
+"<li>จำนวนเงินโดยตรงสามารถป้อนได้ตามเงื่อนไข ดูตัวอย่างที่ 3</li></ol>\n"
+"\n"
 "<h4>ตัวอย่าง</h4>\n"
 "<ol>\n"
 "<li>การคำนวณเงินเดือนพื้นฐานตาม <code>base</code>\n"
@@ -277,14 +285,16 @@ msgstr "<h3>ความช่วยเหลือ</h3>\n\n"
 
 #. Content of the 'html_6' (HTML) field in DocType 'Taxable Salary Slab'
 #: hrms/payroll/doctype/taxable_salary_slab/taxable_salary_slab.json
-msgid "<h4>Condition Examples</h4>\n"
+msgid ""
+"<h4>Condition Examples</h4>\n"
 "<ol>\n"
 "<li>Applying tax if employee born between 31-12-1937 and 01-01-1958 (Employees aged 60 to 80)<br>\n"
 "<code>Condition: date_of_birth&gt;date(1937, 12, 31) and date_of_birth&lt;date(1958, 01, 01)</code></li><br><li>Applying tax by employee gender<br>\n"
 "<code>Condition: gender==\"Male\"</code></li><br>\n"
 "<li>Applying tax by Salary Component<br>\n"
 "<code>Condition: base &gt; 10000</code></li></ol>"
-msgstr "<h4>ตัวอย่างเงื่อนไข</h4>\n"
+msgstr ""
+"<h4>ตัวอย่างเงื่อนไข</h4>\n"
 "<ol>\n"
 "<li>การเรียกเก็บภาษีหากพนักงานเกิดระหว่างวันที่ 31-12-1937 และ 01-01-1958 (พนักงานอายุ 60 ถึง 80 ปี)<br>\n"
 "<code>เงื่อนไข: date_of_birth&gt;date(1937, 12, 31) and date_of_birth&lt;date(1958, 01, 01)</code></li><br><li>การเรียกเก็บภาษีตามเพศของพนักงาน<br>\n"
@@ -327,6 +337,10 @@ msgstr "<table class='table table-bordered'><tr><th>{0}</th><th>{1}</th></tr>"
 #: hrms/hr/doctype/job_requisition/job_requisition.js:101
 msgid "A Job Requisition already exists for {0} requested by {1} for the same department.<br> Do you want to continue?"
 msgstr ""
+
+#: hrms/hr/doctype/job_requisition/job_requisition.py:30
+msgid "A Job Requisition for {0} requested by {1} already exists: {2}"
+msgstr "คำขอจ้างงานสำหรับตำแหน่ง {0} ที่ขอโดย {1} มีอยู่แล้ว: {2}"
 
 #: hrms/controllers/employee_reminders.py:123
 #: hrms/controllers/employee_reminders.py:216
@@ -420,9 +434,9 @@ msgstr "องค์ประกอบแบบเกณฑ์คงค้าง
 msgid "Accrual Component can only be set for Earning Salary Components."
 msgstr "ส่วนประกอบแบบคงค้างสามารถตั้งค่าได้เฉพาะสำหรับส่วนประกอบเงินเดือนที่เกิดจากรายได้เท่านั้น"
 
-#: hrms/payroll/doctype/salary_component/salary_component.py:132
+#: hrms/payroll/doctype/salary_component/salary_component.py:86
 msgid "Accrual Component can only be set for Flexible Benefit Salary Components with accrual payout methods."
-msgstr ""
+msgstr "องค์ประกอบแบบเกณฑ์คงค้างสามารถตั้งค่าได้เฉพาะกับองค์ประกอบเงินเดือนของสวัสดิการแบบยืดหยุ่นที่มีวิธีการจ่ายเงินแบบเกณฑ์คงค้างเท่านั้น"
 
 #: hrms/payroll/doctype/salary_component/salary_component.py:124
 msgid "Accrual Component must be set for Flexible Benefit Salary Components with accrual payout methods."
@@ -609,6 +623,10 @@ msgstr "เงินทดรอง"
 msgid "Advance Account Required"
 msgstr "ต้องใช้บัญชีล่วงหน้า"
 
+#: hrms/hr/doctype/employee_advance/employee_advance.py:44
+msgid "Advance Account is mandatory. Please set the <a href=\"/app/company/{0}#default_employee_advance_account\" target=\"_blank\">Default Employee Advance Account</a> in the Company record {0} and submit this document."
+msgstr ""
+
 #: hrms/hr/doctype/employee_advance/employee_advance.py:89
 msgid "Advance Account is mandatory. Please set the {0} in the Company {1} and submit this document."
 msgstr "{1} บัญชีล่วงหน้าเป็นสิ่งที่จำเป็น กรุณาตั้งค่า {0} ในบัญชีบริษัท และส่งเอกสารนี้"
@@ -616,6 +634,12 @@ msgstr "{1} บัญชีล่วงหน้าเป็นสิ่งท�
 #: hrms/hr/doctype/employee_advance/employee_advance.py:132
 msgid "Advance Account {} currency should be same as Salary Currency of Employee {}. Please select same currency Advance Account"
 msgstr "บัญชีเงินกู้ล่วงหน้า {} ควรใช้สกุลเงินเดียวกับเงินเดือนของพนักงาน {}. กรุณาเลือกสกุลเงินเดียวกันสำหรับบัญชีเงินกู้ล่วงหน้า"
+
+#. Label of the base_advance_paid (Currency) field in DocType 'Expense Claim
+#. Advance'
+#: hrms/hr/doctype/expense_claim_advance/expense_claim_advance.json
+msgid "Advance Paid (Company Currency)"
+msgstr ""
 
 #. Label of the advanced_filters_section (Section Break) field in DocType
 #. 'Leave Control Panel'
@@ -741,6 +765,11 @@ msgstr "อนุญาตให้ติดตามตำแหน่งทา
 #. Label of the applicable_after (Int) field in DocType 'Leave Type'
 #: hrms/hr/doctype/leave_type/leave_type.json
 msgid "Allow Leave Application After (Calendar Days)"
+msgstr ""
+
+#. Label of the applicable_after (Int) field in DocType 'Leave Type'
+#: hrms/hr/doctype/leave_type/leave_type.json
+msgid "Allow Leave Application After (Working Days)"
 msgstr ""
 
 #. Label of the allow_multiple_shift_assignments (Check) field in DocType 'HR
@@ -1612,6 +1641,12 @@ msgstr "ฐาน"
 #. Label of the section_break_7 (Section Break) field in DocType 'Salary
 #. Structure Assignment'
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
+msgid "Base & Variable"
+msgstr ""
+
+#. Label of the section_break_7 (Section Break) field in DocType 'Salary
+#. Structure Assignment'
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
 msgid "Base, Variable & Leave Encashment"
 msgstr "ฐานเงินเดือน, เงินเดือนตามเกณฑ์ & การเบิกเงินค่าลา"
 
@@ -2001,14 +2036,29 @@ msgstr "โหนดลูกสามารถสร้างได้ภาย
 #. Description of the 'Overtime Amount Calculation' (Select) field in DocType
 #. 'Overtime Type'
 #: hrms/hr/doctype/overtime_type/overtime_type.json
-msgid "Choose how the hourly overtime amount is calculated:\n"
+msgid ""
+"Choose how the hourly overtime amount is calculated:\n"
 "<ol style=\"padding-left:15px\"><li>Fixed Hourly Rate: A fixed, manually entered hourly rate.</li>\n"
-"<li>Salary Component-Based:\n\n"
+"<li>Salary Component-Based:\n"
+"\n"
 "(Sum of selected component amounts) ÷ (Payment Days) ÷ (Standard Daily Hours)</li></ol>"
-msgstr "เลือกวิธีการคำนวณจำนวนค่าล่วงเวลาต่อชั่วโมง:\n"
+msgstr ""
+"เลือกวิธีการคำนวณจำนวนค่าล่วงเวลาต่อชั่วโมง:\n"
 "<ol style=\"padding-left:15px\"><li>อัตราค่าจ้างรายชั่วโมงคงที่: อัตราค่าจ้างรายชั่วโมงที่ป้อนด้วยตนเองและคงที่</li>\n"
-"<li>ส่วนประกอบเงินเดือน:\n\n"
+"<li>ส่วนประกอบเงินเดือน:\n"
+"\n"
 "(ผลรวมของจำนวนเงินส่วนประกอบที่เลือก) ÷ (จำนวนวันจ่ายเงิน) ÷ (จำนวนชั่วโมงทำงานมาตรฐานต่อวัน)</li></ol>"
+
+#. Description of the 'Overtime Amount Calculation' (Select) field in DocType
+#. 'Overtime Type'
+#: hrms/hr/doctype/overtime_type/overtime_type.json
+msgid ""
+"Choose how the hourly overtime amount is calculated:\n"
+"<ol style=\"padding-left:15px;\"><li>Fixed Hourly Rate: A fixed, manually entered hourly rate.</li>\n"
+"<li>Salary Component-Based:\n"
+"\n"
+"(Sum of selected component amounts) ÷ (Payment Days) ÷ (Standard Daily Hours)</li></ol>"
+msgstr ""
 
 #. Description of the 'Payroll Date' (Date) field in DocType 'Payroll
 #. Correction'
@@ -2055,6 +2105,13 @@ msgstr "จำนวนเงินที่อ้างโดยพนักง
 #: hrms/overrides/dashboard_overrides.py:87
 msgid "Claims"
 msgstr "การเบิก"
+
+#. Option for the 'Status' (Select) field in DocType 'Interview'
+#. Option for the 'Result' (Select) field in DocType 'Interview Feedback'
+#: hrms/hr/doctype/interview/interview.json
+#: hrms/hr/doctype/interview_feedback/interview_feedback.json
+msgid "Cleared"
+msgstr ""
 
 #: hrms/payroll/doctype/salary_slip/salary_slip.js:300
 msgid "Click {0} to change the configuration and then resave salary slip"
@@ -2614,6 +2671,10 @@ msgstr "กะเริ่มต้น"
 msgid "Delete Attachment"
 msgstr "ลบไฟล์แนบ"
 
+#: frontend/src/components/FormView.vue:224
+msgid "Delete {0}"
+msgstr "ลบ {0}"
+
 #. Name of a DocType
 #: hrms/hr/doctype/department_approver/department_approver.json
 msgid "Department Approver"
@@ -2733,6 +2794,10 @@ msgstr "การเข้างานซ้ำซ้อน"
 #: hrms/payroll/doctype/employee_benefit_claim/employee_benefit_claim.py:79
 msgid "Duplicate Claim Detected"
 msgstr "ตรวจพบการเรียกร้องซ้ำ"
+
+#: hrms/hr/doctype/job_requisition/job_requisition.py:35
+msgid "Duplicate Job Requisition"
+msgstr ""
 
 #: hrms/hr/doctype/leave_adjustment/leave_adjustment.py:66
 msgid "Duplicate Leave Adjustment"
@@ -3178,6 +3243,11 @@ msgstr "ข้อมูลพนักงาน"
 #: hrms/hr/workspace/tenure/tenure.json hrms/workspace_sidebar/tenure.json
 msgid "Employee Information"
 msgstr "ข้อมูลพนักงาน"
+
+#. Label of a Card Break in the Tenure Workspace
+#: hrms/hr/workspace/tenure/tenure.json
+msgid "Employee Journey"
+msgstr ""
 
 #. Name of a report
 #. Label of a Link in the HR Setup Workspace
@@ -3670,6 +3740,10 @@ msgstr "วันที่สิ้นสุด: {0}"
 #: hrms/hr/doctype/training_event/training_event.py:57
 msgid "End time cannot be before start time"
 msgstr "เวลาสิ้นสุดต้องไม่ก่อนเวลาเริ่มต้น"
+
+#: hrms/hr/doctype/job_applicant/job_applicant.js:86
+msgid "Enter Interview Round"
+msgstr ""
 
 #: hrms/hr/doctype/job_applicant/job_applicant.js:126
 msgid "Enter Interview Type"
@@ -4784,6 +4858,11 @@ msgstr "ฝ่ายบุคคลและบัญชีเงินเดื
 msgid "HR & Payroll Settings"
 msgstr "การตั้งค่าฝ่ายบุคคลและบัญชีเงินเดือน"
 
+#. Label of a shortcut in the HR Workspace
+#: hrms/hr/workspace/hr/hr.json
+msgid "HR Dashboard"
+msgstr ""
+
 #. Name of a DocType
 #. Label of a Link in the HR Setup Workspace
 #: hrms/hr/doctype/hr_settings/hr_settings.json
@@ -5407,6 +5486,26 @@ msgstr "แม่แบบการแจ้งเตือนการสัม
 msgid "Interview Rescheduled successfully"
 msgstr "เลื่อนการสัมภาษณ์สำเร็จแล้ว"
 
+#. Label of the interview_round (Link) field in DocType 'Interview'
+#. Label of the interview_round (Link) field in DocType 'Interview Feedback'
+#. Name of a DocType
+#. Label of a Link in the Recruitment Workspace
+#: hrms/hr/doctype/interview/interview.json
+#: hrms/hr/doctype/interview_feedback/interview_feedback.json
+#: hrms/hr/doctype/interview_round/interview_round.json
+#: hrms/hr/doctype/job_applicant/job_applicant_dashboard.html:8
+#: hrms/hr/workspace/recruitment/recruitment.json
+msgid "Interview Round"
+msgstr ""
+
+#: hrms/hr/doctype/job_applicant/job_applicant.py:72
+msgid "Interview Round {0} is only applicable for the Designation {1}"
+msgstr ""
+
+#: hrms/hr/doctype/interview/interview.py:52
+msgid "Interview Round {0} is only for Designation {1}. Job Applicant has applied for the role {2}"
+msgstr ""
+
 #: hrms/hr/doctype/interview_feedback/interview_feedback.py:61
 msgid "Interview Scheduled Date"
 msgstr "วันที่กำหนดสัมภาษณ์"
@@ -5620,6 +5719,11 @@ msgstr "เป็นองค์ประกอบภาษีเงินได
 msgid "Is Leave Without Pay"
 msgstr "เป็นการลาโดยไม่ได้รับค่าจ้าง"
 
+#. Label of the is_optional_leave (Check) field in DocType 'Leave Type'
+#: hrms/hr/doctype/leave_type/leave_type.json
+msgid "Is Optional Leave"
+msgstr "เป็นการลาแบบไม่บังคับ"
+
 #. Label of the is_ppl (Check) field in DocType 'Leave Type'
 #: hrms/hr/doctype/leave_type/leave_type.json
 msgid "Is Partially Paid Leave"
@@ -5693,10 +5797,19 @@ msgstr "สร้างผู้สมัครงาน {0} สำเร็จ�
 msgid "Job Applicants are not allowed to appear twice for the same Interview Type. Interview {0} already scheduled for Job Applicant {1}"
 msgstr ""
 
+#: hrms/hr/doctype/interview/interview.py:39
+msgid "Job Applicants are not allowed to appear twice for the same Interview round. Interview {0} already scheduled for Job Applicant {1}"
+msgstr ""
+
 #. Title of the job-application Web Form
 #: hrms/hr/web_form/job_application/job_application.json
 msgid "Job Application"
 msgstr "ใบสมัครงาน"
+
+#. Label of the job_application_route (Data) field in DocType 'Job Opening'
+#: hrms/hr/doctype/job_opening/job_opening.json
+msgid "Job Application Route"
+msgstr ""
 
 #. Label of the job_description_tab (Tab Break) field in DocType 'Job
 #. Requisition'
@@ -6316,6 +6429,12 @@ msgstr "การจัดสรรวันลา {0} ถูกเชื่อ�
 msgid "Leave already have been assigned for this Leave Policy Assignment"
 msgstr "ได้มีการกำหนดวันลาสำหรับการกำหนดนโยบายการลานี้แล้ว"
 
+#. Label of the leave_and_expense_claim_settings (Section Break) field in
+#. DocType 'HR Settings'
+#: hrms/hr/doctype/hr_settings/hr_settings.json
+msgid "Leave and Expense Claim Settings"
+msgstr ""
+
 #: hrms/hr/doctype/leave_type/leave_type.py:60
 msgid "Leave application is linked with leave allocations {0}. Leave application cannot be set as leave without pay"
 msgstr "ใบลาถูกเชื่อมโยงกับการจัดสรรวันลา {0} ไม่สามารถตั้งค่าใบลาเป็นการลาโดยไม่ได้รับค่าจ้างได้"
@@ -6787,6 +6906,12 @@ msgstr "จำนวนปีขั้นต่ำสำหรับเงิน
 msgid "Minimum calendar days required since Date of Joining to apply for this leave"
 msgstr ""
 
+#. Description of the 'Allow Leave Application After (Working Days)' (Int)
+#. field in DocType 'Leave Type'
+#: hrms/hr/doctype/leave_type/leave_type.json
+msgid "Minimum working days required since Date of Joining to apply for this leave"
+msgstr ""
+
 #: hrms/hr/doctype/employee_advance/employee_advance.py:97
 msgid "Missing Advance Account"
 msgstr "บัญชีล่วงหน้าสูญหาย"
@@ -6860,8 +6985,12 @@ msgstr "การมอบหมายกะหลายรายการ"
 #. Description of the 'Pay Rate Multipliers' (Section Break) field in DocType
 #. 'Overtime Type'
 #: hrms/hr/doctype/overtime_type/overtime_type.json
-msgid "Multipliers that adjust the hourly overtime amount for specific scenarios\n\n"
-msgstr "ตัวคูณที่ปรับจำนวนเงินค่าล่วงเวลาต่อชั่วโมงสำหรับสถานการณ์เฉพาะ\n\n"
+msgid ""
+"Multipliers that adjust the hourly overtime amount for specific scenarios\n"
+"\n"
+msgstr ""
+"ตัวคูณที่ปรับจำนวนเงินค่าล่วงเวลาต่อชั่วโมงสำหรับสถานการณ์เฉพาะ\n"
+"\n"
 
 #: frontend/src/views/employee_advance/List.vue:19
 msgid "My Advances"
@@ -6942,6 +7071,10 @@ msgstr "ข้อเสนอแนะใหม่"
 #: hrms/hr/workspace/tenure/tenure.json
 msgid "New Hires (This Month)"
 msgstr "พนักงานใหม่ (ประจำเดือนนี้)"
+
+#: hrms/hr/report/employee_leave_balance/employee_leave_balance.py:61
+msgid "New Leave(s) Allocated"
+msgstr "การลาใหม่ที่จัดสรรแล้ว"
 
 #. Label of the new_leaves_allocated (Float) field in DocType 'Leave
 #. Allocation'
@@ -7084,6 +7217,10 @@ msgstr "ไม่พบบันทึกการเข้างานสำห
 #: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:68
 msgid "No attendance records found."
 msgstr "ไม่พบบันทึกการเข้างาน"
+
+#: hrms/hr/doctype/attendance_request/attendance_request.py:40
+msgid "No attendance records to create"
+msgstr ""
 
 #: hrms/hr/doctype/attendance_request/attendance_request.py:73
 msgid "No attendance records to create due to following reasons"
@@ -7453,6 +7590,10 @@ msgstr "แผนผังองค์กร"
 msgid "Other Taxes and Charges"
 msgstr "ภาษีและค่าธรรมเนียมอื่นๆ"
 
+#: hrms/setup.py:335
+msgid "Others"
+msgstr ""
+
 #. Label of the out_time (Datetime) field in DocType 'Attendance'
 #: hrms/hr/doctype/attendance/attendance.json
 #: hrms/hr/report/shift_attendance/shift_attendance.py:76
@@ -7812,6 +7953,11 @@ msgstr "ศูนย์ต้นทุนบัญชีเงินเดือ
 msgid "Payroll Cost Centers"
 msgstr "ศูนย์ต้นทุนบัญชีเงินเดือน"
 
+#. Label of a shortcut in the HR Workspace
+#: hrms/hr/workspace/hr/hr.json
+msgid "Payroll Dashboard"
+msgstr ""
+
 #. Label of the payroll_date (Date) field in DocType 'Additional Salary'
 #. Label of the payroll_date (Date) field in DocType 'Arrear'
 #. Label of the payroll_date (Date) field in DocType 'Employee Benefit Claim'
@@ -8007,6 +8153,10 @@ msgstr "โปรดเลือกบริษัทก่อน"
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:908
 msgid "Please assign a Salary Structure for Employee {0} applicable from or before {1} first"
 msgstr "โปรดกำหนดโครงสร้างเงินเดือนสำหรับพนักงาน {0} ที่มีผลบังคับใช้ตั้งแต่วันที่ {1} หรือก่อนหน้านั้นก่อน"
+
+#: hrms/hr/doctype/attendance_request/attendance_request.py:41
+msgid "Please check if employee is on leave or attendance with the same status exists for selected day(s)."
+msgstr ""
 
 #: hrms/templates/emails/training_event.html:17
 msgid "Please confirm once you have completed your training"
@@ -8286,6 +8436,11 @@ msgstr "โปรดส่ง {0} ก่อนที่จะทำเครื�
 msgid "Please update your status for this training event"
 msgstr "โปรดอัปเดตสถานะของคุณสำหรับกิจกรรมการฝึกอบรมนี้"
 
+#. Label of the posted_on (Datetime) field in DocType 'Job Opening'
+#: hrms/hr/doctype/job_opening/job_opening.json
+msgid "Posted On"
+msgstr ""
+
 #. Label of the posting_date (Date) field in DocType 'Gratuity'
 #: hrms/payroll/doctype/gratuity/gratuity.json
 msgid "Posting date"
@@ -8430,6 +8585,11 @@ msgstr "กำไร"
 #: hrms/workspace_sidebar/shift_&_attendance.json
 msgid "Project Profitability"
 msgstr "ความสามารถในการทำกำไรของโครงการ"
+
+#. Label of a Card Break in the Performance Workspace
+#: hrms/hr/workspace/performance/performance.json
+msgid "Promotion"
+msgstr ""
 
 #. Label of the promotion_date (Date) field in DocType 'Employee Promotion'
 #: hrms/hr/doctype/employee_promotion/employee_promotion.json
@@ -8938,6 +9098,11 @@ msgstr "ตารางเวร"
 msgid "Roster Color"
 msgstr "สีตารางเวร"
 
+#. Label of the round_name (Data) field in DocType 'Interview Round'
+#: hrms/hr/doctype/interview_round/interview_round.json
+msgid "Round Name"
+msgstr ""
+
 #. Option for the 'Work Experience Calculation Method' (Select) field in
 #. DocType 'Gratuity Rule'
 #: hrms/payroll/doctype/gratuity_rule/gratuity_rule.json
@@ -9408,6 +9573,10 @@ msgstr ""
 #: hrms/hr/doctype/overtime_type/overtime_type.py:40
 msgid "Select Applicable Components for Overtime Type"
 msgstr "เลือกส่วนประกอบที่ใช้ได้สำหรับประเภทการทำงานล่วงเวลา"
+
+#: hrms/hr/doctype/interview/interview.js:209
+msgid "Select Interview Round First"
+msgstr ""
 
 #: hrms/hr/doctype/interview/interview.js:209
 msgid "Select Interview Type First"
@@ -10030,6 +10199,12 @@ msgstr "ข้ามการบันทึกการเข้างานอ
 msgid "Skipping Salary Structure Assignment for the following employees, as Salary Structure Assignment records already exists against them. {0}"
 msgstr "ข้ามการกำหนดโครงสร้างเงินเดือนสำหรับพนักงานต่อไปนี้ เนื่องจากมีบันทึกการกำหนดโครงสร้างเงินเดือนอยู่แล้ว {0}"
 
+#. Label of the source_and_rating_section (Section Break) field in DocType 'Job
+#. Applicant'
+#: hrms/hr/doctype/job_applicant/job_applicant.json
+msgid "Source and Rating"
+msgstr ""
+
 #: hrms/api/roster.py:138
 msgid "Source and target shifts cannot be the same"
 msgstr "กะต้นทางและเป้าหมายไม่สามารถเป็นกะเดียวกันได้"
@@ -10533,6 +10708,10 @@ msgstr "ฟิลด์นี้ให้คุณตั้งค่าจำน
 #: hrms/overrides/dashboard_overrides.py:63
 msgid "This is based on the attendance of this Employee"
 msgstr "นี่คือข้อมูลตามการเข้างานของพนักงานคนนี้"
+
+#: hrms/www/hrms.py:19
+msgid "This method is only meant for developer mode"
+msgstr ""
 
 #: hrms/payroll/doctype/additional_salary/additional_salary.py:232
 msgid "This will overwrite the tax component {0} in the salary slip and tax won't be calculated based on the Income Tax Slabs"
@@ -11188,6 +11367,12 @@ msgstr "จำนวนเงินที่ไม่ได้รับการ
 msgid "Under Review"
 msgstr "อยู่ระหว่างการตรวจสอบ"
 
+#. Label of the unlink_payment_section (Section Break) field in DocType 'HR
+#. Settings'
+#: hrms/hr/doctype/hr_settings/hr_settings.json
+msgid "Unlink Payment"
+msgstr ""
+
 #: hrms/hr/doctype/attendance/attendance.py:268
 msgid "Unlinked Attendance record from Employee Checkins: {}"
 msgstr "ยกเลิกการเชื่อมโยงบันทึกการเข้างานจากการบันทึกเวลาเข้าของพนักงาน: {}"
@@ -11342,6 +11527,11 @@ msgstr "อัปโหลด HTML"
 msgid "Upload images or documents"
 msgstr "อัปโหลดรูปภาพหรือเอกสาร"
 
+#: frontend/src/components/FormView.vue:124
+#: frontend/src/components/FormView.vue:163
+msgid "Uploading..."
+msgstr ""
+
 #. Label of the upper_range (Currency) field in DocType 'Job Applicant'
 #. Label of the upper_range (Currency) field in DocType 'Job Opening'
 #. Label of the upper_range (Currency) field in DocType 'Job Opening Template'
@@ -11394,6 +11584,13 @@ msgstr "ค่า / คำอธิบาย"
 #: hrms/hr/employee_property_update.js:196
 msgid "Value missing"
 msgstr "ค่าหายไป"
+
+#. Label of the variable (Currency) field in DocType 'Salary Structure
+#. Assignment'
+#: hrms/payroll/doctype/bulk_salary_structure_assignment/bulk_salary_structure_assignment.js:185
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
+msgid "Variable"
+msgstr ""
 
 #. Label of the variable_based_on_taxable_salary (Check) field in DocType
 #. 'Salary Component'
@@ -11821,6 +12018,14 @@ msgstr "ประมวลผลแล้ว"
 msgid "reason"
 msgstr "เหตุผล"
 
+#: hrms/www/jobs/index.html:122
+msgid "result"
+msgstr ""
+
+#: hrms/www/jobs/index.html:122
+msgid "results"
+msgstr ""
+
 #: hrms/public/js/templates/feedback_summary.html:16
 msgid "review"
 msgstr "ตรวจสอบ"
@@ -11905,6 +12110,10 @@ msgstr "{0} มีการมอบหมายกะที่ใช้งา�
 
 #: hrms/hr/doctype/leave_application/leave_application.py:194
 msgid "{0} applicable after {1} calendar days"
+msgstr ""
+
+#: hrms/hr/doctype/leave_application/leave_application.py:155
+msgid "{0} applicable after {1} working days"
 msgstr ""
 
 #: frontend/src/components/LeaveBalance.vue:37
@@ -12021,7 +12230,33 @@ msgstr "{0}: จาก {0} ประเภท {1}"
 msgid "{0}d"
 msgstr "{0}ว"
 
+#. Count format of shortcut in the Shift & Attendance Workspace
+#: hrms/hr/workspace/shift_&_attendance/shift_&_attendance.json
+msgid "{} "
+msgstr ""
+
+#. Count format of shortcut in the Recruitment Workspace
+#: hrms/hr/workspace/recruitment/recruitment.json
+msgid "{} Accepted"
+msgstr ""
+
+#. Count format of shortcut in the HR Workspace
+#: hrms/hr/workspace/hr/hr.json
+msgid "{} Active"
+msgstr ""
+
+#. Count format of shortcut in the Payroll Workspace
+#. Count format of shortcut in the Tax & Benefits Workspace
+#: hrms/payroll/workspace/payroll/payroll.json
+#: hrms/payroll/workspace/tax_&_benefits/tax_&_benefits.json
+msgid "{} Draft"
+msgstr ""
+
+#. Count format of shortcut in the Expenses Workspace
+#: hrms/hr/workspace/expenses/expenses.json
+msgid "{} Unclaimed"
+msgstr ""
+
 #: hrms/hr/doctype/job_requisition/job_requisition.js:22
 msgid "{} {} open for this position."
 msgstr "{} {} เปิดสำหรับตำแหน่งนี้"
-
