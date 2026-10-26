@@ -30,6 +30,7 @@ frappe.ui.form.on("Leave Allocation", {
 
 	refresh: function (frm) {
 		hrms.leave_utils.add_view_ledger_button(frm);
+		hrms.leave_utils.add_leave_balance_button(frm);
 
 		if (frm.doc.docstatus === 1 && !frm.doc.expired) {
 			var valid_expiry = moment(frappe.datetime.get_today()).isBetween(
@@ -41,9 +42,12 @@ frappe.ui.form.on("Leave Allocation", {
 				frm.add_custom_button(
 					__("Expire Allocation"),
 					function () {
-						frappe.confirm("Are you sure you want to expire this allocation?", () => {
-							frm.trigger("expire_allocation");
-						});
+						frappe.confirm(
+							__("Are you sure you want to expire this allocation?"),
+							() => {
+								frm.trigger("expire_allocation");
+							},
+						);
 					},
 					__("Actions"),
 				);
