@@ -1,0 +1,19 @@
+name: frappe-hr
+
+services:
+  frappe:
+    volumes:
+      - frappe-home:/home/frappe      # persist the bench across recreates
+      # Run THIS checkout as the hrms app, so edits on the host show up in the container
+      # without a manual copy. node_modules stay container-side (Linux binaries).
+      - ..:/home/frappe/frappe-bench/apps/hrms
+      - /home/frappe/frappe-bench/apps/hrms/node_modules
+      - /home/frappe/frappe-bench/apps/hrms/frontend/node_modules
+      - /home/frappe/frappe-bench/apps/hrms/roster/node_modules
+      - /home/frappe/frappe-bench/apps/hrms/hrms/public/node_modules
+    ports: !override
+      - "8000:8000"
+      - "9100:9100"                   # host 9000/9001 belong to MinIO
+
+volumes:
+  frappe-home:
