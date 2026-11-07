@@ -27,5 +27,6 @@ class TestPrivacy(IntegrationTestCase):
 		finally:
 			for field, value in original.items():
 				frappe.db.set_single_value("System Settings", field, value)
-			frappe.db.commit()
+			# apply_privacy commits; persist the restoration for subsequent tests.
+			frappe.db.commit()  # nosemgrep
 			frappe.clear_cache()
