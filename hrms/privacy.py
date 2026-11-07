@@ -22,15 +22,11 @@ SYSTEM_SETTINGS = {
 
 def apply_privacy():
 	settings = frappe.get_single("System Settings")
-	changed = False
 	for fieldname, value in SYSTEM_SETTINGS.items():
 		if settings.get(fieldname) != value:
-			settings.set(fieldname, value)
-			changed = True
-	if changed:
-		settings.flags.ignore_permissions = True
-		settings.flags.ignore_mandatory = True
-		settings.save()
+			# Do not validate unrelated System Settings fields during a site migration.
+			# A legacy value in one of those fields can prevent the privacy hook from running.
+			frappe.db.set_single_value("System Settings", fieldname, value)
 
 	for method in OUTBOUND_JOBS:
 		for name in frappe.get_all(
