@@ -11,6 +11,8 @@ repos:
         files: "hrms.*"
         exclude: ".*json$|.*txt$|.*csv|.*md"
       - id: check-yaml
+        # Docker Compose supports !override, which the generic YAML parser does not.
+        exclude: ^docker/docker-compose\.override\.yml$
       - id: no-commit-to-branch
         args: ['--branch', 'develop']
       - id: check-merge-conflict
